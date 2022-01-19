@@ -26,7 +26,6 @@ contract grades{
 
 
     // GRADE STUDENTS ------------------------------------------------
-
     modifier OnlyProfessor(address _address){
         // only the contract owner can grade
         require(msg.sender == professor, "Permission denied");
@@ -58,6 +57,12 @@ contract grades{
         revisions.push(_idStudent);
         emit exam_revision(_idStudent);
     }
+
+    // VIEW EXAM REVISION REQUEST --------------------------------------
+    function ViewRevisionRequests() public view OnlyProfessor(msg.sender) returns(string[] memory){
+        return revisions;
+    }
+
 
 
 }
